@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transkrip Nilai Mahasiswa</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .form-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header-images {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header-images img {
+            width: 100px;
+            height: auto;
+        }
+        .header-images h1 {
+            flex: 1;
+            text-align: center;
+            margin: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        #matkul-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        #matkul-table th, #matkul-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        #matkul-table th {
+            background-color: #f4f4f4;
+        }
+        button {
+            background-color: #b71c1c; /* Dark red */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #8e0b0b; /* Darker red */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="header-images">
+            <img src="ti.png" alt="TI Logo">
+            <h1>Transkrip Nilai Mahasiswa</h1>
+            <img src="simak.jpg" alt="SIMAK Logo">
+        </div>
+        <form action="process.php" method="POST">
+            <div class="form-group">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+            <div class="form-group">
+                <label for="nim">NIM:</label>
+                <input type="text" id="nim" name="nim" required>
+            </div>
+            <div class="form-group">
+                <label for="semester">Semester:</label>
+                <input type="number" id="semester" name="semester" min="1" required>
+            </div>
+            <div id="matkul-container">
+                <h2>Mata Kuliah</h2>
+                <table id="matkul-table">
+                    <tr>
+                        <th>Kode Mata Kuliah</th>
+                        <th>Nama Mata Kuliah</th>
+                        <th>SKS</th>
+                        <th>Nilai Angka (0-100)</th>
+                        <th>Tambah</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="kode_matkul[]" required></td>
+                        <td><input type="text" name="nama_matkul[]" required></td>
+                        <td><input type="number" name="sks[]" min="1" required></td>
+                        <td><input type="number" name="nilai_angka[]" step="0.01" min="0" max="100" required></td>
+                        <td><button type="button" onclick="addRow()">Tambah Matkul</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function addRow() {
+            const table = document.getElementById('matkul-table');
+            const row = table.insertRow();
+            row.innerHTML = `
+                <td><input type="text" name="kode_matkul[]" required></td>
+                <td><input type="text" name="nama_matkul[]" required></td>
+                <td><input type="number" name="sks[]" min="1" required></td>
+                <td><input type="number" name="nilai_angka[]" step="0.01" min="0" max="100" required></td>
+                <td><button type="button" onclick="removeRow(this)">Hapus Baris</button></td>
+            `;
+        }
+
+        function removeRow(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+</html>
