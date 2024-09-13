@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data_matkul = [];
 
-    // Loop untuk setiap mata kuliah dan menentukan nilai huruf berdasarkan nilai angka
     for ($i = 0; $i < count($kode_matkul); $i++) {
         $nilai_huruf = '';
 
@@ -33,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nilai_huruf = 'E';
         }
 
-        // Menyimpan hasil untuk setiap mata kuliah
         $data_matkul[] = [
             'kode_matkul' => $kode_matkul[$i],
             'nama_matkul' => $nama_matkul[$i],
@@ -43,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
     }
 
-    // Tampilkan hasil (atau simpan ke database)
     echo "<h1>Data Mahasiswa</h1>";
     echo "Nama: " . htmlspecialchars($nama) . "<br>";
     echo "NIM: " . htmlspecialchars($nim) . "<br>";
