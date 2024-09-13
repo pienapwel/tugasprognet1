@@ -50,8 +50,8 @@ $matkul = $result->fetch_assoc();
 <html>
 <head>
     
-    <title>Edit Mata Kuliah</title>
-    /* CSS Style */
+    <title>Edit Mata Kuliah</title> 
+/* CSS Style */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
