@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nilai_huruf = 'E';
         }
 
-        // Menyimpan hasil untuk setiap mata kuliah
         $data_matkul[] = [
             'kode_matkul' => $kode_matkul[$i],
             'nama_matkul' => $nama_matkul[$i],
@@ -41,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'nilai_huruf' => $nilai_huruf
         ];
     }
+
 
     echo "<h1>Data Mahasiswa</h1>";
     echo "Nama: " . htmlspecialchars($nama) . "<br>";
@@ -68,5 +68,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     echo "</table>";
+} else {
+   
+    echo '
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Form Data Mahasiswa</title>
+    </head>
+    <body>
+        <h1>Input Data Mahasiswa</h1>
+        <form method="POST" action="">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required><br><br>
+
+            <label for="nim">NIM:</label>
+            <input type="text" id="nim" name="nim" required><br><br>
+
+            <label for="semester">Semester:</label>
+            <input type="text" id="semester" name="semester" required><br><br>
+
+            <h3>Data Mata Kuliah</h3>
+
+            <div id="mata_kuliah_fields">
+                <label for="kode_matkul">Kode Mata Kuliah:</label>
+                <input type="text" id="kode_matkul" name="kode_matkul[]" required><br><br>
+
+                <label for="nama_matkul">Nama Mata Kuliah:</label>
+                <input type="text" id="nama_matkul" name="nama_matkul[]" required><br><br>
+
+                <label for="sks">SKS:</label>
+                <input type="number" id="sks" name="sks[]" required><br><br>
+
+                <label for="nilai_angka">Nilai Angka (0-100):</label>
+                <input type="number" id="nilai_angka" name="nilai_angka[]" required><br><br>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+    </html>';
 }
 ?>
