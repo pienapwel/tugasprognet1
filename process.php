@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $host = "localhost";
     $dbname = "mahasiswa_db";
     $username = "root";
-    $password = "";
+    $password = "Bunga_2005";
 
     try {
         $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
